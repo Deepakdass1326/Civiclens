@@ -30,6 +30,7 @@ export default function ReportPage() {
 
   const activeCoords = useMemo(() => {
     if (coords) return coords;
+    if (!manualCoords.lat.trim() || !manualCoords.lng.trim()) return null;
     const lat = Number(manualCoords.lat);
     const lng = Number(manualCoords.lng);
     if (Number.isFinite(lat) && lat >= -90 && lat <= 90 && Number.isFinite(lng) && lng >= -180 && lng <= 180) {

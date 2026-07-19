@@ -3,7 +3,9 @@ import axios from "axios";
 // Single axios instance for the whole app — base URL from env, timeout guard
 // so a hung Gemini call never leaves the UI stuck without feedback.
 const axiosClient = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api",
+  // Same-origin is the safe production fallback. Local development can still
+  // override this with VITE_API_BASE_URL=http://localhost:5000/api.
+  baseURL: import.meta.env.VITE_API_BASE_URL || "/api",
   timeout: 20000,
   headers: { "Content-Type": "application/json" },
 });
